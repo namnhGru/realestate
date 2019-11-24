@@ -32,47 +32,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
   div#landing-advert__div--advert {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 100%;
+    // max-width: 100%;
     margin-bottom: 5%;
+    text-align: center;
     p {
-      font-size: 1.7em;
+      font-size: 1.4em;
       font-weight: 2em;
       font-family: 'Times New Roman', Times, serif;
+      max-width: 80%;
     }
 
     p:first-child {
-      margin-top: 5%;
-    }
-
-    .landing_advert__div--seperator {
-      margin: 5% 0;
+      margin: 10% auto;
     }
     
     div.landing_advert__div--seperator {
+      margin: 10% 0;
       height: 2px;
-      width: 12%;
-      background-color: rgb(25, 63, 102);
+      width: 40%;
+      background-color: rgb(233, 219, 96);
     }
 
     ul {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       min-height: 400px;
       justify-content: center;
       li {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin: 0 auto;
         list-style: none;
       }
     }

@@ -1,18 +1,21 @@
 <template>
   <div id="landing-nav__div--top-nav">
     <nav class="div__nav--top-left-menu">
-      <ul>
-        <li v-for="(menu_title, i) in left_menus" :key="i">
+      <p class="mobile">{{ left_menus.title }}<span><i class="fas fa-angle-down"></i></span></p>
+      <ul class="over-mobile">
+        <li v-for="(menu_title, i) in left_menus.list" :key="i">
           <p>{{ menu_title }}</p>
         </li>
       </ul>
     </nav>
-    <h1 class="landing-nav__p-company">
-      <span><i :class="company_logo"></i></span>{{ company_name }}
-    </h1>
+    <p class="landing-nav__p-company">
+      <i :class="company_logo"></i>
+      <span class="over-mobile">{{ company_name }}</span>
+    </p>
     <nav class="div__nav--top-right-menu">
-      <ul>
-        <li v-for="(menu_title, i) in right_menus" :key="i">
+      <p class="mobile">{{ right_menus.title }}<span><i class="fas fa-angle-down"></i></span></p>
+      <ul class="over-mobile">
+        <li v-for="(menu_title, i) in right_menus.list" :key="i">
           <p>{{ menu_title }}</p>
         </li>
       </ul>
@@ -24,8 +27,8 @@
 export default {
   name: 'LandingNav',
   props: {
-    left_menus: Array,
-    right_menus: Array,
+    left_menus: Object,
+    right_menus: Object,
     company_name:  {
       type: String,
       required: true,
@@ -36,41 +39,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  @mixin center-one-item-flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @mixin dropdown-box {
+    padding: 10px 10px;
+    list-style: none;
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
   }
 
   div#landing-nav__div--top-nav {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    nav {
-      min-height: 50px;
-      flex-basis: 33.1%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8em;
-      ul {
-        min-width: 100%;
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+    align-items: center;
+    min-height: 40px;
+    .over-mobile {
+      display: none;
+    }
+
+    .fa-angle-down {
+      margin-left: 5px;
+    }
+
+    p.landing-nav__p-company {
+      font-size: 1.6em;
+      color: #0C4499;
+      order: 0;
+      height: 100%;
+      flex-grow: 2;
+      @include center-one-item-flex-container;
+    }
+
+    nav:hover .over-mobile {
+      // background-color: red;
+      display: block;
+      li:hover {
+        background-color: rgba(25, 63, 102, 0.2);;
       }
     }
 
-    h1.landing-nav__p-company {
-      flex-basis: 33.8%;
-      text-align: center;
-      align-self: center;
-      color: #0C4499;
-      span {
-        display: inline-block;
-        padding-right: 10px;  
+    nav.div__nav--top-left-menu {
+      position: relative;
+      display: inline-block;
+      font-size: 0.8em;
+      order: 1;
+      flex-grow: 1;
+      ul {
+        @include dropdown-box;
       }
     }
+
+    nav.div__nav--top-right-menu {
+      position: relative;
+      display: inline-block;
+      font-size: 0.8em;
+      order: 2;
+      flex-grow: 1;
+      ul {
+        @include dropdown-box;
+      }
+    }
+
   }
+  
 </style>

@@ -37,29 +37,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-  }
-
   div.landing-advert__div--card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    max-width: 60%;
-    min-height: 100%;
+    // border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: white;
     p {
-      max-width: 90%;
+      margin: 5% auto;
+      max-width: 80%;
     }
 
     p img {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 80%;
+      max-height: 80%;
+      margin: 0;
     }
 
     button {
@@ -70,6 +64,7 @@ export default {
       border-radius: 3px;
       min-height: 40px;
       min-width: 100px;
+      margin-bottom: 2%;
     }
   }
 

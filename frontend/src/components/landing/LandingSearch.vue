@@ -39,16 +39,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
   div#landing-search__div--search {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 850px;
+    min-height: 500px;
     background-position: center center;
     background-repeat: no-repeat;
     // background-attachment: fixed;
@@ -56,16 +50,18 @@ export default {
     background-color: #546E26;
     color: white;
     h2 {
-      font-size: 2.5em;
+      font-size: 2em;
+      max-width: 250px;
+      text-align: center;
       font-family:'Times New Roman', Times, serif;
       font-stretch: 2;
-      margin-top: 5%;
-      margin-bottom: 0.5%;
+      margin-top: 10%;
+      margin-bottom: 5%;
       transform: scale(1.2,1.1);
     }
 
     p {
-      margin-bottom: 1.5%;
+      margin-bottom: 5%;
     }
 
     form {
@@ -75,18 +71,18 @@ export default {
       border-radius: 40px;
       background-color: white;
       min-height: 50px;
-      min-width: 30%;
+      min-width: 80%;
       input {
         border: none;
         min-width: 70%;
-        margin-left: 5%;
+        margin-left: 7%;
         font-size: 1.1em;
       }
       p.landing-search__p-search-icon {
         text-align: center;
         align-self: center;
-        margin-left: 15%;
-        margin-top: 1%;
+        margin-left: 5%;
+        margin-top: 5%;
         min-width: 10%;
         font-size: 1.2em;
         color: gray;

@@ -1,23 +1,23 @@
 <template>
   <div id="body__div--landing-page">
-    <landing-nav 
+    <landing-nav class="section landing-page__nav--landing-nav"
       :left_menus="NavMenu.left"
       :right_menus="NavMenu.right"
       :company_name="NavMenu.company.title"
       :company_logo="NavMenu.company.logo"
     />
-    <landing-search
+    <landing-search class="section landing-search--landing-search"
       :slogan="SearchRegion.slogan"
       :description="SearchRegion.description"
       :search_placeholder="SearchRegion.placeholder"
       :background_img="SearchRegion.background_img"
     />
-    <landing-advert
+    <landing-advert class="section landing-page__advert--landing-advert"
       :first_advert="AdvertRegion.first"
       :second_advert="AdvertRegion.second"
       :cards="AdvertRegion.cards"
     />
-    <landing-footer
+    <landing-footer class="section landing-page__footer--landing-footer"
       :first_nav="FooterRegion.first_nav"
       :second_nav="FooterRegion.second_nav"
       :disclaimer="FooterRegion.disclaimer"
@@ -49,8 +49,14 @@ export default {
   data() {
     return {
       NavMenu: {
-        left: ['Mua', 'Thuê', 'Bán', 'Cho Thuê', 'Tìm môi giới'],
-        right:['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'],
+        left: {
+          title: 'Mua bán',
+          list: ['Mua', 'Thuê', 'Bán', 'Cho Thuê', 'Tìm môi giới'],
+        },
+        right:{
+          title: 'Quản lý',
+          list: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'],
+        },
         company: {
           title: 'Gối thơm',
           logo: 'fas fa-igloo',
@@ -59,7 +65,7 @@ export default {
       SearchRegion: {
         slogan: 'Tưởng tượng lại căn hộ của bạn',
         description: 'Chúng tôi sẽ giúp bạn tìm căn hộ ưa thích',
-        placeholder: 'Nhập địa chỉ, thành phố, mã ZIP v.v.',
+        placeholder: 'Nhập địa chỉ, thành phố ...',
         background_img: './img/landing_page_background_search.jpg',
       },
       AdvertRegion: {
@@ -122,7 +128,30 @@ export default {
   div#body__div--landing-page {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     font-family: "Open Sans",Gotham,gotham,Tahoma,Geneva,sans-serif;
-    background-color: rgba(25, 63, 102, 0.2);
+    background-color: white;
+
+    .section {
+      display: flex;
+      // justify-content: center;
+      // align-items: center;
+    }
+
+    .landing-page__nav--landing-nav {
+      justify-content: space-around;
+    }
+
+    .landing-page__search--landing-search {
+      height: auto;
+    }
+
+    .landing-page--advert--landing-advert {
+      height: auto;
+    }
+
+    .landing-page__footer--landing-footer {
+      height: auto;
+    }
   }
 </style>

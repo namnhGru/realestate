@@ -70,10 +70,10 @@ export default {
       padding: 20px 0px;
       font-size: 0.8em;
       ul {
-      display: flex;
-      flex-direction: row;
-      list-style: none;
-      justify-content: space-around;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        align-items: center;
       }
     }
     footer {
@@ -85,7 +85,7 @@ export default {
       .footer__p--disclaimer {
         font-size: 0.7em;
         color: rgba(0, 0, 0, 0.5);
-        max-width: 50%;
+        max-width: 90%;
         span {
           margin-left: 3px;
           a {
@@ -95,7 +95,7 @@ export default {
       }
       nav {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
         border: none;
         min-width: 25%;
@@ -111,6 +111,8 @@ export default {
           display: flex;
           flex-direction: row;
           ul {
+            display: flex;
+            flex-direction: row; 
             margin-left: 3px;
             list-style: none;
             font-size: 1.2em;
@@ -128,7 +130,7 @@ export default {
       
       img {
         width: 100%;
-        height: 180px;
+        height: 100px;
       }
     }
   }
