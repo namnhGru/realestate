@@ -1,0 +1,10 @@
+@mixin normal-block-color {
+  background: white;
+  color: $company-branding-color;  
+}
+
+@mixin hover-block-color {
+  background: $company-branding-color;
+  color: white;  
+}
+

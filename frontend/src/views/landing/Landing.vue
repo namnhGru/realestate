@@ -1,23 +1,28 @@
 <template>
-  <div id="body__div--landing-page">
-    <landing-nav class="section landing-page__nav--landing-nav"
-      :left_menus="NavMenu.left"
-      :right_menus="NavMenu.right"
+  <div>
+    <nav-bar 
+      class="row"
+      :subMenus="NavMenu.lists"
+    />
+  </div>
+  <!-- <div class="container">
+    <landing-nav class="row"
+      :lists="NavMenu.lists"
       :company_name="NavMenu.company.title"
       :company_logo="NavMenu.company.logo"
     />
-    <landing-search class="section landing-search--landing-search"
+    <landing-search class="row" 
       :slogan="SearchRegion.slogan"
       :description="SearchRegion.description"
       :search_placeholder="SearchRegion.placeholder"
       :background_img="SearchRegion.background_img"
     />
-    <landing-advert class="section landing-page__advert--landing-advert"
+    <landing-advert class="column half"
       :first_advert="AdvertRegion.first"
       :second_advert="AdvertRegion.second"
       :cards="AdvertRegion.cards"
     />
-    <landing-footer class="section landing-page__footer--landing-footer"
+    <landing-footer class="column half"
       :first_nav="FooterRegion.first_nav"
       :second_nav="FooterRegion.second_nav"
       :disclaimer="FooterRegion.disclaimer"
@@ -29,34 +34,39 @@
       :home_logo="FooterRegion.home_logo"
       :footer_img="FooterRegion.footer_img"
     />
-  </div>
+  </div> -->
 </template>
 
 <script>
-import LandingNav from '@/components/landing/LandingNav.vue';
-import LandingSearch from '@/components/landing/LandingSearch.vue';
-import LandingAdvert from '@/components/landing/LandingAdvert.vue';
-import LandingFooter from '@/components/landing/LandingFooter.vue';
+import NavBar from '@/components/base/NavBar.vue';
+// import LandingNav from '@/components/landing/LandingNav.vue';
+// import LandingSearch from '@/components/landing/LandingSearch.vue';
+// import LandingAdvert from '@/components/landing/LandingAdvert.vue';
+// import LandingFooter from '@/components/landing/LandingFooter.vue';
 
 export default {
   components: {
-    LandingNav,
-    LandingSearch,
-    LandingAdvert,
-    LandingFooter,
+    // LandingNav,
+    // LandingSearch,
+    // LandingAdvert,
+    // LandingFooter,
+    // SubMenu,
+    NavBar,
   },
   name: 'Landing',
   data() {
     return {
       NavMenu: {
-        left: {
-          title: 'Mua bán',
-          list: ['Mua', 'Thuê', 'Bán', 'Cho Thuê', 'Tìm môi giới'],
-        },
-        right:{
-          title: 'Quản lý',
-          list: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'],
-        },
+        lists: [
+          { title: 'Mua bán', dropdowns: ['Mua', 'Thuê', 'Bán', 'Cho Thuê', 'Tìm môi giới'], },
+          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
+          { title: 'Quản lý',  },
+          { title: 'Quản lý',  },
+          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
+          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
+          { title: 'Quản lý',  },
+          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
+        ],
         company: {
           title: 'Gối thơm',
           logo: 'fas fa-igloo',
@@ -119,39 +129,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
 
-  div#body__div--landing-page {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-family: "Open Sans",Gotham,gotham,Tahoma,Geneva,sans-serif;
-    background-color: white;
-
-    .section {
-      display: flex;
-      // justify-content: center;
-      // align-items: center;
-    }
-
-    .landing-page__nav--landing-nav {
-      justify-content: space-around;
-    }
-
-    .landing-page__search--landing-search {
-      height: auto;
-    }
-
-    .landing-page--advert--landing-advert {
-      height: auto;
-    }
-
-    .landing-page__footer--landing-footer {
-      height: auto;
-    }
-  }
 </style>

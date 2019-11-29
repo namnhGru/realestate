@@ -1,0 +1,19 @@
+/* Mobile first styles go here */
+.container { margin: 0 auto; padding: 0 10px; max-width: 1000px; }
+.row::before, .row::after { display: table; content: ' '; clear: both; }
+.column { float: left; }
+.one, .one-third, .two-thirds, .one-fourth, .half { width: 100%; }
+.one-twelve { width: calc(100% / 12); }
+.ten-twelve { width: calc(100% / 12 * 10); }
+.nav-dropdown { position: static; }
+
+/* Desktop styles go here */
+@media screen and (min-width: 800px) {
+  .one { width: 100%; }
+  .half { width: calc(100% / 2); }
+  .one-third { width: calc(100% / 3); }
+  .one-fourth { width: calc(100% / 4); }
+  .two-thirds { width: calc(100% / 3 * 2); }
+  .col { float: left; }
+  .nav-dropdown { position: absolute; }
+}

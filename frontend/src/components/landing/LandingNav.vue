@@ -1,25 +1,29 @@
 <template>
-  <div id="landing-nav__div--top-nav">
-    <nav class="div__nav--top-left-menu">
-      <p class="mobile">{{ left_menus.title }}<span><i class="fas fa-angle-down"></i></span></p>
-      <ul class="over-mobile">
-        <li v-for="(menu_title, i) in left_menus.list" :key="i">
-          <p>{{ menu_title }}</p>
+  <div>
+    <nav class="row">
+      <div class="column one-twelve">
+        <a :class="`hamburger ${hamburger_computed}`" href="#" @click="toggleHamburger()"><span class="hamburger-icon"></span></a>
+      </div>
+      <div class="column ten-twelve">
+        <span class="company-logo">
+          <i :class="company_logo"></i>
+          <span>{{ company_name }}</span>
+        </span>
+      </div> 
+    </nav>
+    <!-- <div class="column one-twelve">
+        <a :class="`search ${search_computed}`" href="#" @click="toggleSearch()"><span class="search-icon"><i class="fas fa-search"></i></span></a>
+    </div> -->
+    <div class="row">
+      <ul v-if="hamburgerIsClicked" class="nav-list row">
+        <li v-for="(list,i) in lists" :key="i">
+          <a href="#" @click="toggleDropdown(i)">{{ list.title }}<span><i class="fas fa-angle-down"></i></span></a>
+          <ul v-if="dropdownIsClicked === i" class="nav-dropdown">
+            <li v-for="(dropdown, j) in list.dropdowns" :key="j"><a href="#!">{{ dropdown }}</a></li>
+          </ul>
         </li>
       </ul>
-    </nav>
-    <p class="landing-nav__p-company">
-      <i :class="company_logo"></i>
-      <span class="over-mobile">{{ company_name }}</span>
-    </p>
-    <nav class="div__nav--top-right-menu">
-      <p class="mobile">{{ right_menus.title }}<span><i class="fas fa-angle-down"></i></span></p>
-      <ul class="over-mobile">
-        <li v-for="(menu_title, i) in right_menus.list" :key="i">
-          <p>{{ menu_title }}</p>
-        </li>
-      </ul>
-    </nav>
+    </div>
   </div>
 </template>
 
@@ -27,86 +31,136 @@
 export default {
   name: 'LandingNav',
   props: {
-    left_menus: Object,
-    right_menus: Object,
+    lists: Array,
     company_name:  {
       type: String,
       required: true,
     },
     company_logo: String,
+  },
+  data() {
+    return {
+      hamburgerIsClicked: false,
+      dropdownIsClicked: null,
+    }
+  },
+  computed: {
+    hamburger_computed() {
+      return this.hamburgerIsClicked ? 'active' : '';
+    },
+  },
+  methods: {
+    toggleHamburger() {
+      this.hamburgerIsClicked = !this.hamburgerIsClicked;
+      this.dropdownIsClicked = null;
+    },
+    toggleDropdown(i) {
+      this.dropdownIsClicked = this.dropdownIsClicked !== i ? i : null;
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @mixin center-one-item-flex-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+// Mobile here
+nav {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 10px 10px;
+  div {
+    a.search {
+      display: inline-block;
+      span.search-icon {
 
-  @mixin dropdown-box {
-    padding: 10px 10px;
-    list-style: none;
-    display: none;
-    position: absolute;
-    background-color: #FFFFFF;
-    min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-
-  div#landing-nav__div--top-nav {
-    justify-content: center;
-    align-items: center;
-    min-height: 40px;
-    .over-mobile {
-      display: none;
+      }
     }
-
-    .fa-angle-down {
-      margin-left: 5px;
-    }
-
-    p.landing-nav__p-company {
-      font-size: 1.6em;
-      color: #0C4499;
-      order: 0;
-      height: 100%;
-      flex-grow: 2;
-      @include center-one-item-flex-container;
-    }
-
-    nav:hover .over-mobile {
-      // background-color: red;
+    a.hamburger { 
       display: block;
-      li:hover {
-        background-color: rgba(25, 63, 102, 0.2);;
+      padding: 10px 0;
+      
+      
+      span.hamburger-icon {
+        &, &:before, &:after {
+          cursor: pointer;
+          border-radius: 1px;
+          height: 4px;
+          width: 30px;
+          background: black;
+          position: absolute;
+          display: block;
+          content: '';
+          transition: all 150ms ease-in-out;
+        }
+        &:before {
+          top: -8px; 
+        }
+        &:after {
+          bottom: -8px; 
+        }
+      }
+      &.active {
+        span {
+          background-color: transparent;
+          &:before, &:after {
+            top: 0;
+          }
+          &:before {
+            transform: rotate(45deg);
+          }
+          &:after {
+            transform: rotate(-45deg);
+          }
+        }
       }
     }
-
-    nav.div__nav--top-left-menu {
-      position: relative;
-      display: inline-block;
-      font-size: 0.8em;
-      order: 1;
-      flex-grow: 1;
-      ul {
-        @include dropdown-box;
-      }
-    }
-
-    nav.div__nav--top-right-menu {
-      position: relative;
-      display: inline-block;
-      font-size: 0.8em;
-      order: 2;
-      flex-grow: 1;
-      ul {
-        @include dropdown-box;
-      }
-    }
-
   }
-  
+  span.company-logo {
+    display: block;
+    color: $company-branding-color;
+    span {
+      padding: 0 5px;
+    }
+  } 
+}
+ul.nav-list {
+  position: static;
+  list-style: none;
+  li {
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    a {
+      display: block;
+      padding: 15px;
+      color: $company-branding-color;
+      &, &:visited, &:hover, &:focus, &:active {
+        text-decoration: none;
+      }
+      &:hover {
+        background: $company-branding-color;
+        color: white;
+      }
+      span {
+        display: inline-block;
+        padding: 0 10px;
+      }
+    }
+    ul {
+      position: absolute;
+      z-index: 1;
+      background: white;
+      li {
+        min-width: 100%;
+        padding: 0;
+        a {
+          display: block;
+          padding: 15px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}  
 </style>
