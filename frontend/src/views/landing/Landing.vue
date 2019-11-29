@@ -3,6 +3,8 @@
     <nav-bar 
       class="row"
       :subMenus="NavMenu.lists"
+      :closeOnClickedAnother="true"
+      :company="NavMenu.company"
     />
   </div>
   <!-- <div class="container">
@@ -59,12 +61,6 @@ export default {
       NavMenu: {
         lists: [
           { title: 'Mua bán', dropdowns: ['Mua', 'Thuê', 'Bán', 'Cho Thuê', 'Tìm môi giới'], },
-          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
-          { title: 'Quản lý',  },
-          { title: 'Quản lý',  },
-          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
-          { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
-          { title: 'Quản lý',  },
           { title: 'Quản lý', dropdowns: ['Quản lý thuê', 'Quảng cáo', 'Cá nhân', 'Trợ giúp'], },
         ],
         company: {

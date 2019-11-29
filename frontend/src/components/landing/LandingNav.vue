@@ -70,9 +70,6 @@ nav {
   div {
     a.search {
       display: inline-block;
-      span.search-icon {
-
-      }
     }
     a.hamburger { 
       display: block;

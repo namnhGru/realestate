@@ -2,7 +2,7 @@
   <div>
     <a class="title" href="#" @click="toggleDropdown()">{{ list.title }}<span v-if="hasDropdown"><i class="fas fa-angle-down"></i></span></a>
     <ul v-if="hasDropdown && dropdownIsClicked" class="nav-dropdown">
-      <li v-for="(dropdown, j) in list.dropdowns" :key="j"><a class="sub" href="#!">{{ dropdown }}</a></li>
+      <li v-for="(dropdown, j) in list.dropdowns" :key="j"><a class="sub-menu" href="#!">{{ dropdown }}</a></li>
     </ul>
   </div>
 </template>
@@ -21,6 +21,9 @@ export default {
       type: Number,
       default: () => null,
     },
+    closeOnClickedAnother: {
+      type: Boolean,
+    }
   },
   data() {
     return {
@@ -40,7 +43,11 @@ export default {
   created() {
     const that = this;
     navEvent.$on('subMenuClicked', (index) => {
-      that.dropdownIsClicked = that.index === index ? !that.dropdownIsClicked : false;
+      if (!that.closeOnClickedAnother){
+        that.dropdownIsClicked = that.index === index ? !that.dropdownIsClicked : that.dropdownIsClicked;
+      } else {
+        that.dropdownIsClicked = that.index === index ? !that.dropdownIsClicked : false;
+      }
     })
   }
 }
@@ -48,24 +55,22 @@ export default {
 
 <style lang="scss" scoped>
   div {
-    position: relative;
     &:hover {
       @include hover-block-color;
     }
     @include normal-block-color;
+    position: relative;
     text-align: center;
     min-width: 150px;
     a, a.title {
-      display: block;
-      &, &:visited, &:focus, &:hover, &:active {
-        text-decoration: none;
-        padding: 10px 10px;
-      }
+      @include link-style;
       &:hover {
       @include hover-block-color;
       }
       @include normal-block-color;
       span {
+        position: absolute;
+        right: 3%;
         display: inline-block;
         padding: 0 5px;
       }

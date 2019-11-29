@@ -8,3 +8,10 @@
   color: white;  
 }
 
+@mixin link-style {
+  display: block;
+  &, &:visited, &:focus, &:hover, &:active {
+    text-decoration: none;
+    padding: 10px 10px;
+  }
+}
